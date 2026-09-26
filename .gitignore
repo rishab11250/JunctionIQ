@@ -1,0 +1,21 @@
+# OS and System Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor & IDE Directories
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary and Log Files
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Environment and Secret Placeholders
+.env
+.env.local
+.env.production
