@@ -85,7 +85,7 @@ sequenceDiagram
     participant Cam as Video Feed
     participant Vis as Python Vision
     participant API as Node.js Backend
-    participant Opt as Optimizer
+    participant Optimizer as Optimizer Engine
     participant Sim as Simulator
     participant UI as React UI
 
@@ -95,9 +95,9 @@ sequenceDiagram
     API->>API: In-Memory State Cache Update
     API-->>UI: WebSocket emit("traffic:update")
     
-    API->>Opt: calculateOptimalPhases(trafficState)
-    Opt->>Opt: Score Lane Urgency & Apply Min/Max Bounds
-    Opt-->>API: Return SignalPlan
+    API->>Optimizer: calculateOptimalPhases(trafficState)
+    Optimizer->>Optimizer: Score Lane Urgency & Apply Min/Max Bounds
+    Optimizer-->>API: Return SignalPlan
     API-->>UI: WebSocket emit("signal:update")
 
     opt When Simulation Benchmark Triggered
