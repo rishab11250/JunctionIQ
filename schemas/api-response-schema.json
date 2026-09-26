@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ApiResponseEnvelope",
+  "description": "Standardized envelope schema for all JunctionIQ REST API responses",
+  "type": "object",
+  "properties": {
+    "success": {
+      "type": "boolean",
+      "description": "Indicates whether the API operation succeeded"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Server UTC timestamp of response emission"
+    },
+    "requestId": {
+      "type": "string",
+      "description": "Unique UUID assigned to request lifecycle for observability"
+    },
+    "data": {
+      "description": "Payload body for successful queries or null on failure",
+      "type": ["object", "array", "null"]
+    },
+    "error": {
+      "type": ["object", "null"],
+      "description": "Error diagnostic details if success is false",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "Machine-readable error code (e.g. VALIDATION_ERROR, NOT_FOUND)"
+        },
+        "message": {
+          "type": "string",
+          "description": "Human-readable explanation of error condition"
+        },
+        "details": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Granular field-level or parameter-level diagnostic messages"
+        }
+      },
+      "required": ["code", "message"]
+    }
+  },
+  "required": ["success", "timestamp", "requestId", "data", "error"]
+}

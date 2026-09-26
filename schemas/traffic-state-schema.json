@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TrafficState",
+  "description": "Schema definition for real-time lane-wise traffic state emitted by vision service or ingested by backend",
+  "type": "object",
+  "properties": {
+    "intersectionId": {
+      "type": "string",
+      "description": "Unique identifier of the monitored intersection"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 formatted observation timestamp"
+    },
+    "sensorHealth": {
+      "type": "object",
+      "properties": {
+        "cameraStatus": {
+          "type": "string",
+          "enum": ["ONLINE", "DEGRADED", "OFFLINE"]
+        },
+        "fps": {
+          "type": "number",
+          "minimum": 0
+        },
+        "frameDropRate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "required": ["cameraStatus", "fps"]
+    },
+    "lanes": {
+      "type": "array",
+      "description": "Lane-wise vehicle count, density, and queue length telemetry",
+      "items": {
+        "type": "object",
+        "properties": {
+          "laneId": {
+            "type": "string",
+            "description": "Identifier for the lane approach, e.g. North-Bound-01 or Lane-A"
+          },
+          "approachDirection": {
+            "type": "string",
+            "enum": ["NORTH", "SOUTH", "EAST", "WEST", "NORTHEAST", "NORTHWEST", "SOUTHEAST", "SOUTHWEST"]
+          },
+          "vehicleCount": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Total detected vehicles currently occupying this lane region"
+          },
+          "density": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 1.0,
+            "description": "Normalized ratio of occupied lane space (0.0 = empty, 1.0 = bumper-to-bumper)"
+          },
+          "queueLength": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Number of stationary or slow-moving queued vehicles waiting at red"
+          },
+          "averageSpeedKmph": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Estimated average approach speed of moving vehicles"
+          },
+          "vehicleClassification": {
+            "type": "object",
+            "properties": {
+              "cars": { "type": "integer", "minimum": 0 },
+              "buses": { "type": "integer", "minimum": 0 },
+              "trucks": { "type": "integer", "minimum": 0 },
+              "motorcycles": { "type": "integer", "minimum": 0 }
+            },
+            "required": ["cars", "buses", "trucks", "motorcycles"]
+          }
+        },
+        "required": ["laneId", "approachDirection", "vehicleCount", "density", "queueLength"]
+      },
+      "minItems": 1
+    }
+  },
+  "required": ["intersectionId", "timestamp", "lanes"]
+}

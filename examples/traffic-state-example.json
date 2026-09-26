@@ -1,0 +1,67 @@
+{
+  "intersectionId": "intersection-01",
+  "timestamp": "2026-09-26T09:30:00.000Z",
+  "sensorHealth": {
+    "cameraStatus": "ONLINE",
+    "fps": 28.5,
+    "frameDropRate": 0.01
+  },
+  "lanes": [
+    {
+      "laneId": "A",
+      "approachDirection": "NORTH",
+      "vehicleCount": 32,
+      "density": 0.78,
+      "queueLength": 18,
+      "averageSpeedKmph": 12.4,
+      "vehicleClassification": {
+        "cars": 24,
+        "buses": 3,
+        "trucks": 1,
+        "motorcycles": 4
+      }
+    },
+    {
+      "laneId": "B",
+      "approachDirection": "SOUTH",
+      "vehicleCount": 7,
+      "density": 0.22,
+      "queueLength": 3,
+      "averageSpeedKmph": 38.6,
+      "vehicleClassification": {
+        "cars": 5,
+        "buses": 0,
+        "trucks": 0,
+        "motorcycles": 2
+      }
+    },
+    {
+      "laneId": "C",
+      "approachDirection": "EAST",
+      "vehicleCount": 11,
+      "density": 0.35,
+      "queueLength": 6,
+      "averageSpeedKmph": 29.1,
+      "vehicleClassification": {
+        "cars": 8,
+        "buses": 1,
+        "trucks": 0,
+        "motorcycles": 2
+      }
+    },
+    {
+      "laneId": "D",
+      "approachDirection": "WEST",
+      "vehicleCount": 26,
+      "density": 0.69,
+      "queueLength": 14,
+      "averageSpeedKmph": 15.8,
+      "vehicleClassification": {
+        "cars": 19,
+        "buses": 2,
+        "trucks": 2,
+        "motorcycles": 3
+      }
+    }
+  ]
+}

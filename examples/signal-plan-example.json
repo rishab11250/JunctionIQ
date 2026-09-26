@@ -1,0 +1,51 @@
+{
+  "planId": "plan-adp-20260926-093005",
+  "intersectionId": "intersection-01",
+  "generatedAt": "2026-09-26T09:30:05.000Z",
+  "validUntil": "2026-09-26T09:32:05.000Z",
+  "strategy": "ADAPTIVE_RULE_BASED",
+  "cycleDurationSeconds": 120,
+  "rationale": "High congestion detected on North (Lane A, score 28.4) and West (Lane D, score 23.2). Green times dynamically scaled while respecting 12s safety minimums for South (Lane B) and East (Lane C).",
+  "phases": [
+    {
+      "phaseIndex": 1,
+      "activeLanes": ["A"],
+      "greenTimeSeconds": 46,
+      "yellowTimeSeconds": 4,
+      "allRedTimeSeconds": 2,
+      "demandScore": 28.4,
+      "minGreenBound": 12,
+      "maxGreenBound": 65
+    },
+    {
+      "phaseIndex": 2,
+      "activeLanes": ["B"],
+      "greenTimeSeconds": 14,
+      "yellowTimeSeconds": 4,
+      "allRedTimeSeconds": 2,
+      "demandScore": 7.1,
+      "minGreenBound": 12,
+      "maxGreenBound": 65
+    },
+    {
+      "phaseIndex": 3,
+      "activeLanes": ["C"],
+      "greenTimeSeconds": 16,
+      "yellowTimeSeconds": 4,
+      "allRedTimeSeconds": 2,
+      "demandScore": 10.8,
+      "minGreenBound": 12,
+      "maxGreenBound": 65
+    },
+    {
+      "phaseIndex": 4,
+      "activeLanes": ["D"],
+      "greenTimeSeconds": 38,
+      "yellowTimeSeconds": 4,
+      "allRedTimeSeconds": 2,
+      "demandScore": 23.2,
+      "minGreenBound": 12,
+      "maxGreenBound": 65
+    }
+  ]
+}

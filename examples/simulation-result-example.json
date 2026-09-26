@@ -1,0 +1,38 @@
+{
+  "simulationId": "sim-run-20260926-101",
+  "intersectionId": "intersection-01",
+  "scenarioName": "ILLUSTRATIVE_SIMULATION_EXAMPLE_Morning_Peak_Four_Way",
+  "simulationDurationSeconds": 1800,
+  "startedAt": "2026-09-26T09:30:10.000Z",
+  "endedAt": "2026-09-26T09:30:12.000Z",
+  "status": "COMPLETED",
+  "note": "ILLUSTRATIVE SIMULATION EXAMPLE — FINAL VALUES DEPEND ON IMPLEMENTATION. Data represents synthetic simulation testing comparing equal-time fixed control vs rule-based adaptive control.",
+  "baselineFixedPlan": {
+    "cycleDurationSeconds": 120,
+    "metrics": {
+      "averageWaitTimeSec": 72.4,
+      "averageQueueLengthVehicles": 31.2,
+      "throughputVehiclesPerHour": 840.0,
+      "totalIdleTimeSeconds": 48200.0,
+      "estimatedFuelIndicatorLiters": 124.5,
+      "estimatedEmissionsIndicatorKgCO2": 286.3
+    }
+  },
+  "adaptiveEvaluatedPlan": {
+    "planId": "plan-adp-20260926-093005",
+    "metrics": {
+      "averageWaitTimeSec": 43.1,
+      "averageQueueLengthVehicles": 18.5,
+      "throughputVehiclesPerHour": 1120.0,
+      "totalIdleTimeSeconds": 29100.0,
+      "estimatedFuelIndicatorLiters": 75.2,
+      "estimatedEmissionsIndicatorKgCO2": 172.9
+    }
+  },
+  "comparativeDelta": {
+    "waitTimeDeltaPercent": -40.47,
+    "queueLengthDeltaPercent": -40.71,
+    "throughputDeltaPercent": 33.33,
+    "idleTimeDeltaPercent": -39.63
+  }
+}

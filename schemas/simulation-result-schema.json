@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SimulationResult",
+  "description": "Schema definition for comparative traffic simulation results between fixed and adaptive plans",
+  "type": "object",
+  "properties": {
+    "simulationId": {
+      "type": "string",
+      "description": "Unique identifier for simulation batch execution"
+    },
+    "intersectionId": {
+      "type": "string",
+      "description": "Target intersection identifier"
+    },
+    "scenarioName": {
+      "type": "string",
+      "description": "Traffic arrival scenario label (e.g. Morning_Peak_Hour, Balanced_Midday)"
+    },
+    "simulationDurationSeconds": {
+      "type": "integer",
+      "minimum": 60
+    },
+    "startedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "endedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["COMPLETED", "IN_PROGRESS", "FAILED"]
+    },
+    "baselineFixedPlan": {
+      "type": "object",
+      "properties": {
+        "cycleDurationSeconds": { "type": "integer" },
+        "metrics": { "$ref": "#/$defs/metricsSummary" }
+      },
+      "required": ["cycleDurationSeconds", "metrics"]
+    },
+    "adaptiveEvaluatedPlan": {
+      "type": "object",
+      "properties": {
+        "planId": { "type": "string" },
+        "metrics": { "$ref": "#/$defs/metricsSummary" }
+      },
+      "required": ["planId", "metrics"]
+    },
+    "comparativeDelta": {
+      "type": "object",
+      "description": "Relative percentage changes computed as (adaptive - fixed) / fixed * 100",
+      "properties": {
+        "waitTimeDeltaPercent": { "type": "number" },
+        "queueLengthDeltaPercent": { "type": "number" },
+        "throughputDeltaPercent": { "type": "number" },
+        "idleTimeDeltaPercent": { "type": "number" }
+      },
+      "required": ["waitTimeDeltaPercent", "queueLengthDeltaPercent", "throughputDeltaPercent", "idleTimeDeltaPercent"]
+    }
+  },
+  "required": [
+    "simulationId",
+    "intersectionId",
+    "scenarioName",
+    "simulationDurationSeconds",
+    "status",
+    "baselineFixedPlan",
+    "adaptiveEvaluatedPlan",
+    "comparativeDelta"
+  ],
+  "$defs": {
+    "metricsSummary": {
+      "type": "object",
+      "properties": {
+        "averageWaitTimeSec": { "type": "number", "minimum": 0 },
+        "averageQueueLengthVehicles": { "type": "number", "minimum": 0 },
+        "throughputVehiclesPerHour": { "type": "number", "minimum": 0 },
+        "totalIdleTimeSeconds": { "type": "number", "minimum": 0 },
+        "estimatedFuelIndicatorLiters": { "type": "number", "minimum": 0 },
+        "estimatedEmissionsIndicatorKgCO2": { "type": "number", "minimum": 0 }
+      },
+      "required": [
+        "averageWaitTimeSec",
+        "averageQueueLengthVehicles",
+        "throughputVehiclesPerHour",
+        "totalIdleTimeSeconds",
+        "estimatedFuelIndicatorLiters",
+        "estimatedEmissionsIndicatorKgCO2"
+      ]
+    }
+  }
+}

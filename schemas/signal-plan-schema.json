@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SignalPlan",
+  "description": "Schema definition for adaptive and fixed signal timing configuration generated for an intersection",
+  "type": "object",
+  "properties": {
+    "planId": {
+      "type": "string",
+      "description": "Unique identifier of generated signal plan"
+    },
+    "intersectionId": {
+      "type": "string",
+      "description": "Target intersection identifier"
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "validUntil": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "strategy": {
+      "type": "string",
+      "enum": ["ADAPTIVE_RULE_BASED", "FIXED_BASELINE"]
+    },
+    "cycleDurationSeconds": {
+      "type": "integer",
+      "minimum": 30,
+      "maximum": 240,
+      "description": "Total combined cycle duration"
+    },
+    "rationale": {
+      "type": "string",
+      "description": "Deterministic scoring summary justifying the timing breakdown"
+    },
+    "phases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "phaseIndex": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "activeLanes": {
+            "type": "array",
+            "items": { "type": "string" },
+            "minItems": 1
+          },
+          "greenTimeSeconds": {
+            "type": "integer",
+            "minimum": 10,
+            "maximum": 120
+          },
+          "yellowTimeSeconds": {
+            "type": "integer",
+            "minimum": 3,
+            "maximum": 6,
+            "default": 4
+          },
+          "allRedTimeSeconds": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 4,
+            "default": 2
+          },
+          "demandScore": {
+            "type": "number",
+            "minimum": 0
+          },
+          "minGreenBound": {
+            "type": "integer",
+            "default": 10
+          },
+          "maxGreenBound": {
+            "type": "integer",
+            "default": 75
+          }
+        },
+        "required": [
+          "phaseIndex",
+          "activeLanes",
+          "greenTimeSeconds",
+          "yellowTimeSeconds",
+          "allRedTimeSeconds"
+        ]
+      },
+      "minItems": 2
+    }
+  },
+  "required": [
+    "planId",
+    "intersectionId",
+    "generatedAt",
+    "strategy",
+    "cycleDurationSeconds",
+    "phases"
+  ]
+}
